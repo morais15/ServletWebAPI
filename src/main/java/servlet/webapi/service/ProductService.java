@@ -16,12 +16,13 @@ public class ProductService {
 
         PreparedStatement preparedStatement;
         try {
-            String query = "INSERT INTO products (description, price) VALUES (?, ?)";
+            String query = "INSERT INTO products (id, description, price) VALUES (?, ?, ?)";
             System.out.println("Database query is '" + query + "'");
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, product.getDescription());
-            preparedStatement.setDouble(2, product.getPrice());
+            preparedStatement.setLong(1, product.getId());
+            preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setDouble(3, product.getPrice());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
